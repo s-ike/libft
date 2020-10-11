@@ -2,11 +2,11 @@
 
 char	*ft_strdup(const char *s1)
 {
-	char	*p;
+	char	*cpy;
 	size_t	len;
 
 	len = ft_strlen(s1);
-	if (!(p = malloc((len + 1) * sizeof(char))))
+	if (!(cpy = malloc((len + 1) * sizeof(char))))
 		return (NULL);
-	return (ft_memcpy(p, s1, len + 1));
+	return (ft_memcpy(cpy, s1, len + 1));
 }
