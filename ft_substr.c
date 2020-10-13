@@ -9,7 +9,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 		return (ft_calloc(1, sizeof(char)));
 	if (s_len < len + start)
 		len = s_len - start;
-	if (!(sub = malloc((len + 1) * sizeof(char))))
+	if (!(sub = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
 	s += start;
 	ft_strlcpy(sub, s, len + 1);

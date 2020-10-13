@@ -23,7 +23,7 @@ char		*ft_itoa(int n)
 
 	un = n < 0 ? -(n) : n;
 	len = n < 0 ? cnt_digit(un) + 1 : cnt_digit(un);
-	if (!(result = malloc((len + 1) * sizeof(char))))
+	if (!(result = (char *)malloc((len + 1) * sizeof(char))))
 		return (NULL);
 	result[len] = '\0';
 	if (n == 0)

@@ -8,7 +8,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 
 	s1_len = !s1 ? 0 : ft_strlen(s1);
 	s2_len = !s2 ? 0 : ft_strlen(s2);
-	if (!(str = malloc((s1_len + s2_len + 1) * sizeof(char))))
+	if (!(str = (char *)malloc((s1_len + s2_len + 1) * sizeof(char))))
 		return (NULL);
 	if (s1)
 		ft_memcpy(str, s1, s1_len + 1);
