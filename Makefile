@@ -31,7 +31,8 @@ SRCS	= ft_memset.c \
 			ft_strjoin.c \
 			ft_strtrim.c \
 			ft_split.c \
-			ft_itoa.c
+			ft_itoa.c \
+			ft_strmapi.c
 OBJS	= ${SRCS:.c=.o}
 NAME	= libft.a
 
