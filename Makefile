@@ -38,6 +38,8 @@ SRCS	= ft_memset.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c
 OBJS	= ${SRCS:.c=.o}
+SRCS_B	= ft_lstnew.c
+OBJS_B	= ${SRCS_B:.c=.o}
 NAME	= libft.a
 
 all:		${NAME}
@@ -48,12 +50,15 @@ all:		${NAME}
 ${NAME}:	${OBJS}
 			${AR} ${ARFLAGS} ${NAME} ${OBJS}
 
+bonus:		${OBJS_B}
+			${AR} ${ARFLAGS} ${NAME} ${OBJS_B}
+
 clean:
-			${RM} ${OBJS}
+			${RM} ${OBJS} ${OBJS_B}
 
 fclean:		clean
 			${RM} ${NAME}
 
 re:			fclean all
 
-.PHONY:		all clean fclean re
+.PHONY:		all clean fclean re bonus
