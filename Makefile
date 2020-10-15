@@ -38,7 +38,8 @@ SRCS	= ft_memset.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c
 OBJS	= ${SRCS:.c=.o}
-SRCS_B	= ft_lstnew.c
+SRCS_B	= ft_lstnew.c \
+			ft_lstadd_front.c
 OBJS_B	= ${SRCS_B:.c=.o}
 NAME	= libft.a
 
