@@ -25,7 +25,10 @@ static size_t	cnt_words(char const *s, char c)
 static void		free_memories(char **strs, size_t size)
 {
 	while (size)
-		free(strs[size--]);
+	{
+		free(strs[--size]);
+		strs[size] = NULL;
+	}
 }
 
 static int		set_words(char **strs, char const *str, char c, size_t cnt)
@@ -45,7 +48,7 @@ static int		set_words(char **strs, char const *str, char c, size_t cnt)
 		if (!strs[i])
 		{
 			if (0 < i)
-				free_memories(strs, i - 1);
+				free_memories(strs, i);
 			return (0);
 		}
 		str += end ? end - start : 0;
@@ -68,6 +71,7 @@ char			**ft_split(char const *s, char c)
 	if (!set_words(strs, s, c, cnt))
 	{
 		free(strs);
+		strs = NULL;
 		return (NULL);
 	}
 	return (strs);
