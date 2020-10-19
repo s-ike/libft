@@ -9,7 +9,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 	s = src;
 	if (!n || dst == src)
 		return (dst);
-	while (n--)
+	while (0 < n--)
 		*d++ = *s++;
 	return (dst);
 }

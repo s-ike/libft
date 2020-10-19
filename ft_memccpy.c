@@ -7,7 +7,7 @@ void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 
 	d = dst;
 	s = src;
-	while (n--)
+	while (0 < n--)
 		if ((*d++ = *s++) == (unsigned char)c)
 			return (d);
 	return (NULL);
