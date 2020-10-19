@@ -42,13 +42,11 @@ int			ft_atoi(const char *str)
 	}
 	while (*str && ft_isdigit(*str))
 	{
-		if (num)
-			num *= 10;
-		num += (*str++ - '0');
+		num = (num * 10) + (*str++ - '0');
 		if (0 < sign && is_over_max_long(num))
 			return ((int)__LONG_MAX__);
 		if (sign < 0 && is_over_min_long(num))
 			return ((int)(-__LONG_MAX__ - 1));
 	}
-	return (num *= sign);
+	return (num * sign);
 }
