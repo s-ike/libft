@@ -1,9 +1,11 @@
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
+
 AR		= ar
 ARFLAGS	= rc
+
 INCLUDE	= -I libft.h
-SRCS	= ft_memset.c \
+SRCS	=	ft_memset.c \
 			ft_bzero.c \
 			ft_memcpy.c \
 			ft_memccpy.c \
@@ -37,8 +39,8 @@ SRCS	= ft_memset.c \
 			ft_putstr_fd.c \
 			ft_putendl_fd.c \
 			ft_putnbr_fd.c
-OBJS	= ${SRCS:.c=.o}
-SRCS_B	= ft_lstnew.c \
+OBJS	= $(SRCS:.c=.o)
+SRCS_B	=	ft_lstnew.c \
 			ft_lstadd_front.c \
 			ft_lstsize.c \
 			ft_lstlast.c \
@@ -47,25 +49,27 @@ SRCS_B	= ft_lstnew.c \
 			ft_lstclear.c \
 			ft_lstiter.c \
 			ft_lstmap.c
-OBJS_B	= ${SRCS_B:.c=.o}
+OBJS_B	= $(SRCS_B:.c=.o)
+
+RM		= rm -f
 NAME	= libft.a
 
-all:		${NAME}
+all:		$(NAME)
 
 .c.o:
-			${CC} ${CFLAGS} ${INCLUDE} -c $< -o $@
+			$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
-${NAME}:	${OBJS}
-			${AR} ${ARFLAGS} ${NAME} ${OBJS}
+$(NAME):	$(OBJS)
+			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-bonus:		${OBJS_B}
-			${AR} ${ARFLAGS} ${NAME} ${OBJS_B}
+bonus:		$(OBJS_B)
+			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_B)
 
 clean:
-			${RM} ${OBJS} ${OBJS_B}
+			$(RM) $(OBJS) $(OBJS_B)
 
 fclean:		clean
-			${RM} ${NAME}
+			$(RM) $(NAME)
 
 re:			fclean all
 
