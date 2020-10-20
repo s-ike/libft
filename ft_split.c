@@ -1,58 +1,63 @@
 #include "libft.h"
 
-static size_t	cnt_words(char const *s, char c)
+static size_t	cnt_words(char const *str, char c)
 {
 	size_t	cnt;
 
-	if (*s == '\0')
+	if (*str == '\0')
 		return (0);
-	if (c == '\0' && *s)
+	if (c == '\0' && *str)
 		return (1);
 	cnt = 0;
-	while (*s)
+	while (*str)
 	{
-		while (*s == c)
-			s++;
-		if (!*s)
+		while (*str == c)
+			str++;
+		if (!*str)
 			break ;
-		while (*s && *s != c)
-			s++;
+		while (*str && *str != c)
+			str++;
 		cnt++;
 	}
 	return (cnt);
 }
 
-static void		free_memories(char **strs, size_t size)
+static int		free_strs(char **strs, size_t size)
 {
-	while (size)
+	while (0 < size)
 	{
 		free(strs[--size]);
 		strs[size] = NULL;
 	}
+	free(strs);
+	strs = NULL;
+	return (0);
 }
 
-static int		set_words(char **strs, char const *str, char c, size_t cnt)
+static int		set_words(char **strs, char const *str, char c)
 {
 	size_t	i;
 	char	*start;
 	char	*end;
 
 	i = 0;
-	while (i < cnt)
+	while (*str)
 	{
-		while (*str == c)
-			str++;
-		start = (char *)str;
-		end = ft_strchr(str, c);
-		strs[i] = !end ? ft_strdup(str) : ft_substr(start, 0, end - start);
-		if (!strs[i])
+		if (*str != c)
 		{
-			if (0 < i)
-				free_memories(strs, i);
-			return (0);
+			start = (char *)str;
+			end = ft_strchr(str, c);
+			strs[i] = !end ? ft_strdup(str) : ft_substr(start, 0, end - start);
+			if (!strs[i])
+				return (free_strs(strs, i));
+			i++;
+			if (end)
+				str += end - start;
+			else
+				break ;
 		}
-		str += end ? end - start : 0;
-		i++;
+		else
+			str++;
 	}
 	strs[i] = NULL;
 	return (1);
@@ -61,18 +66,12 @@ static int		set_words(char **strs, char const *str, char c, size_t cnt)
 char			**ft_split(char const *s, char c)
 {
 	char	**strs;
-	size_t	cnt;
 
 	if (!s)
 		return (NULL);
-	cnt = cnt_words(s, c);
-	if (!(strs = (char **)malloc((cnt + 1) * sizeof(char *))))
+	if (!(strs = (char **)malloc((cnt_words(s, c) + 1) * sizeof(char *))))
 		return (NULL);
-	if (!set_words(strs, s, c, cnt))
-	{
-		free(strs);
-		strs = NULL;
+	if (!set_words(strs, s, c))
 		return (NULL);
-	}
 	return (strs);
 }
