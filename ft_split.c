@@ -22,15 +22,13 @@ static size_t	cnt_words(char const *str, char c)
 	return (cnt);
 }
 
-static int		free_strs(char **strs, size_t size)
+static int		free_memories_in_strs(char **strs, size_t size)
 {
 	while (0 < size)
 	{
 		free(strs[--size]);
 		strs[size] = NULL;
 	}
-	free(strs);
-	strs = NULL;
 	return (0);
 }
 
@@ -49,7 +47,7 @@ static int		set_words(char **strs, char const *str, char c)
 			end = ft_strchr(str, c);
 			strs[i] = !end ? ft_strdup(str) : ft_substr(start, 0, end - start);
 			if (!strs[i])
-				return (free_strs(strs, i));
+				return (free_memories_in_strs(strs, i));
 			i++;
 			if (end)
 				str += end - start;
@@ -72,6 +70,10 @@ char			**ft_split(char const *s, char c)
 	if (!(strs = (char **)malloc((cnt_words(s, c) + 1) * sizeof(char *))))
 		return (NULL);
 	if (!set_words(strs, s, c))
+	{
+		free(strs);
+		strs = NULL;
 		return (NULL);
+	}
 	return (strs);
 }
