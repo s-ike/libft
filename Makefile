@@ -62,7 +62,7 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-bonus:		$(OBJS_B)
+bonus:		$(OBJS) $(OBJS_B)
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_B)
 
 clean:
