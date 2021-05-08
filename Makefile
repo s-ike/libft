@@ -1,3 +1,5 @@
+NAME	:= libft.a
+
 CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 
@@ -52,7 +54,6 @@ SRCS_B	=	ft_lstnew.c \
 OBJS_B	= $(SRCS_B:.c=.o)
 
 RM		= rm -f
-NAME	= libft.a
 
 all:		$(NAME)
 
