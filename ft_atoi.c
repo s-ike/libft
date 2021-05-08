@@ -26,7 +26,7 @@ static int	is_over_min_long(unsigned long n)
 	return (is_over_long(n, 0));
 }
 
-int			ft_atoi(const char *str)
+long		ft_atol(const char *str)
 {
 	unsigned long	num;
 	int				sign;
@@ -44,9 +44,14 @@ int			ft_atoi(const char *str)
 	{
 		num = (num * 10) + (*str++ - '0');
 		if (0 < sign && is_over_max_long(num))
-			return ((int)__LONG_MAX__);
+			return (__LONG_MAX__);
 		if (sign < 0 && is_over_min_long(num))
-			return ((int)(-__LONG_MAX__ - 1));
+			return (-__LONG_MAX__ - 1);
 	}
 	return (num * sign);
+}
+
+int			ft_atoi(const char *str)
+{
+	return ((int)ft_atol(str));
 }

@@ -1,7 +1,29 @@
-libft.a
-a.out
-*.o
-test*
+# Test
 *main.c
-*.dSYM
+test*
+
+# General
+.DS_Store
+
+# Editor
 .vscode
+
+# Prerequisites
+*.d
+
+# Object files
+*.o
+
+# Libraries
+*.lib
+*.a
+
+# Executables
+*.exe
+*.out
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb

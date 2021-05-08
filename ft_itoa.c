@@ -1,13 +1,15 @@
 #include "libft.h"
 
-static int	cnt_digit(unsigned int num)
+static size_t	cnt_digit(double num)
 {
-	int	digit;
+	size_t	digit;
 
 	digit = 0;
-	if (num == 0)
+	if (num < 0)
+		num *= -1;
+	if (num < 1)
 		return (1);
-	while (0 < num)
+	while (1 <= num)
 	{
 		num = num / 10;
 		digit++;
