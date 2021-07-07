@@ -2,10 +2,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	len;
+	const char	*p;
 
-	len = 0;
-	while (s[len])
-		len++;
-	return (len);
+	p = s;
+	while (*p)
+		p++;
+	return (p - s);
 }
