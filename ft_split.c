@@ -22,52 +22,52 @@ static size_t	cnt_words(char const *str, char c)
 	return (cnt);
 }
 
-static int		free_memories_in_strs(char **strs, size_t size)
+static int	free_memories_in_strs(char **strs)
 {
-	while (0 < size)
+	size_t	i;
+
+	i = 0;
+	while (strs[i])
 	{
-		free(strs[--size]);
-		strs[size] = NULL;
+		free(strs[i]);
+		strs[i] = NULL;
+		i++;
 	}
 	return (0);
 }
 
-static int		set_words(char **strs, char const *str, char c)
+static int	set_words(char **strs, char const *str, char c)
 {
 	size_t	i;
-	char	*start;
-	char	*end;
+	size_t	len;
 
 	i = 0;
-	while (*str)
+	while (1)
 	{
-		if (*str != c)
-		{
-			start = (char *)str;
-			end = ft_strchr(str, c);
-			strs[i] = !end ? ft_strdup(str) : ft_substr(start, 0, end - start);
-			if (!strs[i])
-				return (free_memories_in_strs(strs, i));
-			i++;
-			if (end)
-				str += end - start;
-			else
-				break ;
-		}
-		else
+		while (*str && *str == c)
 			str++;
+		if (!*str)
+			break ;
+		len = 0;
+		while (str[len] && str[len] != c)
+			len++;
+		strs[i] = ft_substr(str, 0, len);
+		if (!strs[i++])
+			return (free_memories_in_strs(strs));
+		str += len;
 	}
 	strs[i] = NULL;
 	return (1);
 }
 
-char			**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**strs;
 
 	if (!s)
 		return (NULL);
-	if (!(strs = (char **)malloc((cnt_words(s, c) + 1) * sizeof(char *))))
+	strs = (char **)malloc((cnt_words(s, c) + 1) * sizeof(char *));
+	if (!strs)
 		return (NULL);
 	if (!set_words(strs, s, c))
 	{

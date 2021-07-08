@@ -11,12 +11,16 @@ static void	recursive_putnbr(unsigned int n, int fd)
 	ft_putchar_fd(n % 10 + '0', fd);
 }
 
-void		ft_putnbr_fd(int n, int fd)
+void	ft_putnbr_fd(int n, int fd)
 {
 	unsigned int	un;
 
 	if (n < 0)
+	{
 		ft_putchar_fd('-', fd);
-	un = n < 0 ? -(n) : n;
+		un = -n;
+	}
+	else
+		un = n;
 	recursive_putnbr(un, fd);
 }

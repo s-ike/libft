@@ -17,28 +17,41 @@ static size_t	cnt_digit(double num)
 	return (digit);
 }
 
-char		*ft_itoa(int n)
+static void	itoa_recursion(char *dst, int i, unsigned int un)
+{
+	if (10 < un)
+	{
+		dst[i] = un % 10 + '0';
+		itoa_recursion(dst, i - 1, un / 10);
+	}
+	else
+		dst[i] = un + '0';
+}
+
+char	*ft_itoa(int n)
 {
 	char			*result;
 	unsigned int	un;
 	int				len;
 
-	un = n < 0 ? -(n) : n;
-	len = n < 0 ? cnt_digit(un) + 1 : cnt_digit(un);
-	if (!(result = (char *)malloc((len + 1) * sizeof(char))))
-		return (NULL);
-	result[len] = '\0';
 	if (n == 0)
-		result[--len] = '0';
+		return (ft_strdup("0"));
+	if (n < 0)
+	{
+		un = -n;
+		len = cnt_digit(un) + 1;
+	}
 	else
 	{
-		while (0 < un)
-		{
-			result[--len] = un % 10 + '0';
-			un /= 10;
-		}
-		if (n < 0 && 0 < len)
-			result[--len] = '-';
+		un = n;
+		len = cnt_digit(un);
 	}
+	result = (char *)malloc((len + 1) * sizeof(char));
+	if (!result)
+		return (NULL);
+	if (n < 0)
+		*result = '-';
+	itoa_recursion(result, len - 1, un);
+	result[len] = '\0';
 	return (result);
 }
