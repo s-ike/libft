@@ -54,6 +54,9 @@ SRCS_B	=	ft_lstnew.c \
 			ft_lstiter.c \
 			ft_lstmap.c
 OBJS_B	= $(SRCS_B:.c=.o)
+ifdef WITH_BONUS
+OBJS += $(OBJS_B)
+endif
 
 RM		= rm -f
 
@@ -65,8 +68,8 @@ all:		$(NAME)
 $(NAME):	$(OBJS)
 			$(AR) $(ARFLAGS) $(NAME) $(OBJS)
 
-bonus:		$(OBJS) $(OBJS_B)
-			$(AR) $(ARFLAGS) $(NAME) $(OBJS) $(OBJS_B)
+bonus:
+			$(MAKE) WITH_BONUS=1
 
 clean:
 			$(RM) $(OBJS) $(OBJS_B)
