@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 03:11:03 by sikeda            #+#    #+#             */
-/*   Updated: 2021/08/23 11:29:41 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/08/23 11:39:21 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_itoa(int n)
 {
 	char			*result;
 	unsigned int	un;
-	int				len;
+	unsigned int	len;
 
 	if (n == 0)
 		return (ft_strdup("0"));
@@ -61,7 +61,8 @@ char	*ft_itoa(int n)
 		return (NULL);
 	if (n < 0)
 		*result = '-';
-	itoa_recursion(result, len - 1, un);
+	if (0 < len)
+		itoa_recursion(result, len - 1, un);
 	result[len] = '\0';
 	return (result);
 }
