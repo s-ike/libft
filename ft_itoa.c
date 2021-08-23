@@ -6,24 +6,22 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 03:11:03 by sikeda            #+#    #+#             */
-/*   Updated: 2021/08/14 03:11:04 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/08/23 11:29:41 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static size_t	cnt_digit(double num)
+static size_t	cnt_digit(unsigned int num)
 {
 	size_t	digit;
 
 	digit = 0;
-	if (num < 0)
-		num *= -1;
-	if (num < 1)
+	if (num == 0)
 		return (1);
-	while (1 <= num)
+	while (num != 0)
 	{
-		num = num / 10;
+		num /= 10;
 		digit++;
 	}
 	return (digit);
@@ -31,7 +29,7 @@ static size_t	cnt_digit(double num)
 
 static void	itoa_recursion(char *dst, int i, unsigned int un)
 {
-	if (10 < un)
+	if (10 <= un)
 	{
 		dst[i] = un % 10 + '0';
 		itoa_recursion(dst, i - 1, un / 10);
