@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 03:13:10 by sikeda            #+#    #+#             */
-/*   Updated: 2021/08/14 03:13:10 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/10/22 09:15:19 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
-	size_t	dst_len;
-	size_t	src_len;
+	const size_t	dst_len = ft_strlen(dst);
+	const size_t	src_len = ft_strlen(src);
 
-	dst_len = ft_strlen(dst);
-	src_len = ft_strlen(src);
 	if (dstsize == 0 || dstsize <= dst_len)
 		return (src_len + dstsize);
 	dst += dst_len;
