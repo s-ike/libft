@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 03:13:22 by sikeda            #+#    #+#             */
-/*   Updated: 2021/10/22 09:14:13 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/04 14:17:00 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 size_t	ft_strlen(const char *s)
 {
-	const char	*ptr;
+	size_t	len;
 
-	ptr = s;
-	while (*ptr)
-		ptr++;
-	return (ptr - s);
+	len = 0;
+	while (s[len])
+		len++;
+	return (len);
 }
