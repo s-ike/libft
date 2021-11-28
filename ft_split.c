@@ -6,7 +6,7 @@
 /*   By: sikeda <sikeda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/14 03:12:45 by sikeda            #+#    #+#             */
-/*   Updated: 2021/08/14 03:12:46 by sikeda           ###   ########.fr       */
+/*   Updated: 2021/11/28 21:27:11 by sikeda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static size_t	cnt_words(char const *str, char c)
 
 	if (*str == '\0')
 		return (0);
-	if (c == '\0' && *str)
+	if (c == '\0')
 		return (1);
 	cnt = 0;
 	while (*str)
